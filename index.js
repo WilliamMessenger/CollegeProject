@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 dotenv.config();
 const config = require('./config');
 const port = process.env.PORT || 3000;
+const bodyParser = require("body-parser");
 
 const api = require('./routes/api');
 
@@ -21,6 +22,9 @@ mongoose.connection.on('error', error => {
 mongoose.connection.on('disconnected', error => {
   console.error('Mongoose error', error);
 })
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/api', api);
 
