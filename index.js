@@ -6,6 +6,8 @@ dotenv.config();
 const config = require('./config');
 const port = process.env.PORT || 3000;
 
+const api = require('./routes/api');
+
 mongoose.connect(config.db.url, config.db.options);
 
 mongoose.connection.on('connected', () => {
@@ -19,6 +21,8 @@ mongoose.connection.on('error', error => {
 mongoose.connection.on('disconnected', error => {
   console.error('Mongoose error', error);
 })
+
+app.use('/api', api);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
