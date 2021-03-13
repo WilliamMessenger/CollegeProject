@@ -12,11 +12,11 @@ module.exports = {
     const {email, password, firstName, lastName} = req.body;
 
     if(!email.match(regex.email)) {
-      res.status(401).send('Please supply a valid email');
+      return res.status(401).send('Please supply a valid email');
     }
     
     if(!password.match(regex.password)) {
-      res.status(401).send('Please supply a valid password');
+      return res.status(401).send('Please supply a valid password');
     }
 
     try {
@@ -51,9 +51,45 @@ module.exports = {
     // Encrypt password
     // Insert into DB
   },
-  login: (req, res) => {
+  login: async (req, res) => {
+
+    const {email, password} = req.body;
+    
+    if(!email.match(regex.email)) {
+      res.status(401).send('Please supply a valid email');
+    }
+
+    try {
+
+      const existingUser = await userModel.findOne({email: email})
+    
+      if (existingUser) {
+  
+        if (await bcrypt.compare(password, existingUser.password)) {
+          
+          // token stuff
+          res.send(existingUser.email + " is a user account")
+  
+        } else {
+
+          //passwords dont match
+          res.send("Username/Password doesn't match")
+
+        }
+  
+      } else {
+       
+        // username and password doesnt match
+        res.send("Username/Password doesn't match")
+  
+      }
+
+    } catch (error) {
+      res.status(500).send(error);
+    }
+
+
     // Validate
     // Check PW
-    res.send('Login');
   }
 }
