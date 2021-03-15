@@ -1,5 +1,6 @@
 const userModel = require('../models/users');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const regex = {
   email: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
@@ -23,10 +24,10 @@ module.exports = {
       const salt = await bcrypt.genSalt();
       const hashpw = await bcrypt.hash(password, salt);
   
-      const existingUser = await userModel.findOne({email: email})
-      console.log(existingUser)
+      const existingUser = await userModel.findOne({email: email});
+
       if(existingUser) {
-        return res.status(409).send('Account with entered email already exists.')
+        return res.status(409).send('Account with entered email already exists.');
       }
 
       const user = new userModel({
@@ -47,49 +48,48 @@ module.exports = {
     } catch (error) {
       res.status(500).send(error);
     }
-    // Validate
-    // Encrypt password
-    // Insert into DB
   },
   login: async (req, res) => {
 
     const {email, password} = req.body;
     
     if(!email.match(regex.email)) {
-      res.status(401).send('Please supply a valid email');
+      return res.status(401).send('Please supply a valid email');
     }
 
+    // if (!req.headers.authorization) {
+    //   return res.sendStatus(401);
+    // }
+
     try {
+      const existingUser = await userModel.findOne({email: email});
 
-      const existingUser = await userModel.findOne({email: email})
-    
       if (existingUser) {
-  
         if (await bcrypt.compare(password, existingUser.password)) {
-          
-          // token stuff
-          res.send(existingUser.email + " is a user account")
-  
+          return res.json({token: jwt.sign({email: existingUser.email}, process.env.TOKEN_SECRET)})
         } else {
-
-          //passwords dont match
-          res.send("Username/Password doesn't match")
-
+          return res.status(400).send("Username/Password doesn't match");
         }
-  
       } else {
-       
-        // username and password doesnt match
-        res.send("Username/Password doesn't match")
-  
+        return res.status(400).send("Username/Password doesn't match");
       }
-
     } catch (error) {
       res.status(500).send(error);
     }
+  },
+  verifyJWT: async (req, res, next) => {
+    console.log(req.headers.authorization)
+    if(!req.headers.authorization) {
+      return res.sendStatus(403);
+    }
 
+    jwt.verify(req.headers.authorization, process.env.TOKEN_SECRET, (err, user) => {
+      if(err) {
+        return res.sendStatus(500);
+      }
 
-    // Validate
-    // Check PW
+      req.user = user;
+      next();
+    })
   }
 }
