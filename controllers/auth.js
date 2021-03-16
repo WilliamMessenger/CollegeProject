@@ -78,7 +78,6 @@ module.exports = {
     }
   },
   verifyJWT: async (req, res, next) => {
-    console.log(req.headers.authorization)
     if(!req.headers.authorization) {
       return res.sendStatus(403);
     }
