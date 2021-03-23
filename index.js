@@ -39,7 +39,7 @@ app.engine('hbs', exphbs.create({
 }).engine);
 app.set('view engine', 'hbs');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')))
 app.use('/', views);
 app.use('/*', (req, res) => {
   if(!res.headersSent) {

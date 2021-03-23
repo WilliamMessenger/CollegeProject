@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-    alert("ATTENTION, see Jude's opinion below!")
-
     $("#homeButton").click(function() {
         $(".navButton").css("background-color", "#343a40")
         $("#homeButton").css("background-color", "#00ADFB")
@@ -37,4 +35,7 @@ $(document).ready(function() {
         $("#courseButton").css("background-color", "#00ADFB")
     })
 
+
 });
+
+
