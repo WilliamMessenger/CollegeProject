@@ -38,7 +38,6 @@ module.exports = {
       });
   
       await user.save((err, doc) => {
-        console.log(err, doc)
         if(err) {
           return res.status(500).send(err);
         }
@@ -84,7 +83,7 @@ module.exports = {
 
     jwt.verify(req.headers.authorization, process.env.TOKEN_SECRET, (err, user) => {
       if(err) {
-        return res.sendStatus(500);
+        return res.sendStatus(401);
       }
 
       req.user = user;
