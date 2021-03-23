@@ -1,0 +1,103 @@
+/*********************** Generic **********************/
+
+
+body {font-size: 16px!important;}
+html {font-size:16px} /* USED FOR RESPONSIVE TEXT */
+p {margin-bottom:0!important}
+b, strong {font-weight: 700!important;}
+img {max-width:100%}
+
+
+.TopNav {background-color: rgba(var(--logo-purple), var(--alpha));}
+.TopNav * {color:white}
+
+footer {background-color: rgba(var(--footer-grey), var(--alpha));}
+footer * {color:white!important}
+
+
+/**************************************  GENERIC *************************************************************/
+
+h1,h2,h3,h4,h5,h6,p,a {font-family: Arial, sans-serif !important;}
+h1 {font-size: 2.375rem!important;}
+h1, h2 {font-family: playfair; }
+h3, h4, h5, h6 {font-family:montserrat,sans-serif; font-size:1rem;}
+p {font-family: Arial, sans-serif !important;}
+li { font-weight:400; font-size:1rem;}
+a { text-decoration:none; color:inherit; font-size:1rem;}
+
+.faq {
+  background-color: rgb(88, 88, 88);
+  color: white;
+  margin-top: 5%;
+}
+.Desktop {display:none}
+
+.Width80 {width:80%; margin:0 auto;}
+
+
+/********************************************  CONTAINERS  *************************************************************/
+/* BUTTONS */
+.button {padding: 5px 25px; border-radius: 0px; color:white;    display: inline-block;
+    transition: background-color linear 0.2s;
+    -webkit-transition: background-color linear 0.2s;
+	background-color:transparent;
+	margin:10px;}
+
+.btn-clear {background-color: transparent; color:white!important;  border: 1px solid var(--white); }
+.btn-clear:hover {background-color: var(--white); color:var(--navy-blue)!important }
+
+.btn-left {margin-left:0}
+
+
+
+#FAQTitle {width: 60%; margin: 0 auto;}
+
+
+/*********************************** HEADER & NAVIGATION ****************************************************/
+/* Nav wrapper*/
+.logo img {width: 8rem;	margin-left: 5rem;}
+  
+  
+  /******************************************************  MEDIA  QUERIES ********************************************************************************************/
+
+/* Extra small devices (portrait phones, less than 576px)
+ No media query since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up)  .col-sm-*/
+@media (min-width: 576px) { 
+
+
+
+
+
+ }
+
+/* Medium devices (tablets, 768px and up) .col-md-*/
+@media (min-width: 768px) { 
+  
+
+  
+  
+
+
+ }
+
+/* Large devices (desktops, 992px and up) .col-lg-*/
+@media (min-width: 992px) { 
+.Tablet {display:none}
+.Desktop {display:block}
+
+
+
+
+
+ }
+
+/* Extra large devices (large desktops, 1200px and up) .col-xl-*/
+@media (min-width: 1200px) {
+	
+
+
+	
+}
+ 
