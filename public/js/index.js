@@ -1,7 +1,9 @@
 $(document).ready(function() {
-  $('#login-toggle').on('click', function() {
+  $('#login-button').on('click', function() {
     $('#login-modal').modal('show');
   })
+
+  setNavActive()
 
   $('#login-form').on('submit', function(event) {
     event.preventDefault();
@@ -16,9 +18,10 @@ $(document).ready(function() {
       },
       success: function(data) {
         localStorage.setItem("token", data.token);
-        $('#logout').removeClass('d-none').show();
-        $('#login-toggle').hide();
+        $('#logout-button').removeClass('d-none').show();
+        $('#login-button').hide();
         resetLoginModal();
+        addNavLinks();
         alert('Login Successful');
       },
       error: function(err) {
@@ -28,10 +31,11 @@ $(document).ready(function() {
     })
   })
 
-  $('#logout').on('click', function() {
+  $('#logout-button').on('click', function() {
     localStorage.removeItem("token");
-    $('#logout').hide();
-    $('#login-toggle').show();
+    removeNavLinks();
+    $('#logout-button').hide();
+    $('#login-button').show();
   })
   
   $('#register-form').on('submit', function(event) {
@@ -65,8 +69,9 @@ $(document).ready(function() {
   })
 
   if(localStorage.getItem('token')) {
-    $('#logout').removeClass('d-none').show();
-    $('#login-toggle').hide();
+    addNavLinks();
+    $('#logout-button').removeClass('d-none').show();
+    $('#login-button').hide();
   }
 }) 
 
@@ -82,4 +87,54 @@ function resetRegistrationModal() {
   $('#register-firstname').val("");
   $('#register-lastname').val("");
   $('#register-password').val("");
+}
+
+function loginCheck() {
+  $.ajax({
+    url: '/api/auth/verify',
+    dataType: "json",
+    type: "Post",
+    headers: {
+      'Authorization': localStorage.getItem('token')
+    },
+    success: function(data) {
+      
+    },
+    error: function(err) {
+      console.error(err);
+      alert(err.responseText);
+      window.location.replace('/');
+    }
+  })
+}
+
+function addNavLinks() {
+  if(!$('#student-work').length && !$('#mock-exam').length){
+    $('#nav-wrapper').append(
+      $('<div>').addClass('navButton').attr('id', 'student-work').append(
+        $('<p>').text('Student Work')
+      ).on('click', function() {
+        window.location.href = 'https://vle.newcollege.ac.uk/'
+      }),
+      $('<div>').addClass('navButton').attr('id', 'mock-exam').append(
+        $('<p>').text('Mock Exam')
+      ).on('click', function() {
+        window.location.replace('mock-exam');
+      }),
+    )
+  }
+}
+
+function removeNavLinks() {
+  $('#mockexamButton').remove();
+  $('#studentworkButton').remove();
+}
+
+function setNavActive() {
+  const page = window.location.pathname.split('/').pop();
+  console.log(page)
+  if(page === '') {
+    $('#home').addClass('nav-active');
+  }
+  $('#'+page).addClass('nav-active');
 }

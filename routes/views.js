@@ -90,4 +90,15 @@ router.get('/work', (req, res) => {
   })
 })
 
+router.get('/mock-exam', (req, res) => {
+  res.render('mock-exam', {
+    pageTitle: 'Mock Exam',
+    js: [
+      "/public/js/index.js",
+      "/public/js/header.js",
+      "/public/js/loginCheck.js",
+    ]
+  })
+})
+
 module.exports = router;

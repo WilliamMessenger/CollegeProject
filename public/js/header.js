@@ -1,40 +1,40 @@
 $(document).ready(function() {
 
-    $("#homeButton").click(function() {
-        $(".navButton").css("background-color", "#343a40")
-        $("#homeButton").css("background-color", "#00ADFB")
+    $("#home").click(function() {
+        window.location.replace('/');
     })
 
-    $("#aboutButton").click(function() {
-        $(".navButton").css("background-color", "#343a40")
-        $("#aboutButton").css("background-color", "#00ADFB")
+    $("#college").click(function() {
+        window.location.replace('college');
     })
 
-    $("#helpButton").click(function() {
-        $(".navButton").css("background-color", "#343a40")
-        $("#helpButton").css("background-color", "#00ADFB")
+    $("#work").click(function() {
+        window.location.replace('work');
     })
 
-    $("#staffButton").click(function() {
-        $(".navButton").css("background-color", "#343a40")
-        $("#staffButton").css("background-color", "#00ADFB")
+    $("#summary").click(function() {
+        window.location.replace('summary');
+    })
+    
+    $("#faqs").click(function() {
+        window.location.replace('faqs');
     })
 
-    $("#studentButton").click(function() {
-        $(".navButton").css("background-color", "#343a40")
-        $("#studentButton").css("background-color", "#00ADFB")
+    $("#videos").click(function() {
+        window.location.replace('videos');
     })
 
-    $("#resourceButton").click(function() {
-        $(".navButton").css("background-color", "#343a40")
-        $("#resourceButton").css("background-color", "#00ADFB")
+    $("#example-work").click(function() {
+        window.location.replace('example-work');
     })
 
-    $("#courseButton").click(function() {
-        $(".navButton").css("background-color", "#343a40")
-        $("#courseButton").css("background-color", "#00ADFB")
+    $("#syllabus").click(function() {
+        window.location.replace('syllabus');
     })
 
+    $("#specimen-papers").click(function() {
+        window.location.replace('specimen-papers');
+    })
 
 });
 

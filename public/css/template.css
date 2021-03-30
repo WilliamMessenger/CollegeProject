@@ -33,6 +33,33 @@ a { text-decoration:none; color:inherit; font-size:1rem;}
 
 .Width80 {width:80%; margin:0 auto;}
 
+.navButton {
+  margin: 0; 
+  height: 100%; 
+  width: auto; 
+  display: flex; 
+  align-items: center;
+  border-radius: 5px 5px 0 0;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+.navButton:hover {
+  background-color: #00ADFB;
+}
+
+.navButton p {
+  color: white; 
+  height: 20px;
+  margin: 0;
+  width: 100%; 
+  text-align: center;
+  white-space: nowrap;
+}
+
+.nav-active {
+  background-color: #00ADFB;
+}
 
 /********************************************  CONTAINERS  *************************************************************/
 /* BUTTONS */
