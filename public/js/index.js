@@ -126,8 +126,8 @@ function addNavLinks() {
 }
 
 function removeNavLinks() {
-  $('#mockexamButton').remove();
-  $('#studentworkButton').remove();
+  $('#mock-exam').remove();
+  $('#student-work').remove();
 }
 
 function setNavActive() {
