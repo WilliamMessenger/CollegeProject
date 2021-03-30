@@ -132,9 +132,10 @@ function removeNavLinks() {
 
 function setNavActive() {
   const page = window.location.pathname.split('/').pop();
-  console.log(page)
+
   if(page === '') {
     $('#home').addClass('nav-active');
+  } else {
+    $('#'+page).addClass('nav-active');
   }
-  $('#'+page).addClass('nav-active');
 }

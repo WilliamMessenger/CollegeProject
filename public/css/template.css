@@ -61,6 +61,12 @@ a { text-decoration:none; color:inherit; font-size:1rem;}
   background-color: #00ADFB;
 }
 
+.footer {
+  background-color: rgb(88, 88, 88);
+  color: white;
+  margin-top: 5%;
+}
+
 /********************************************  CONTAINERS  *************************************************************/
 /* BUTTONS */
 .button {padding: 5px 25px; border-radius: 0px; color:white;    display: inline-block;
